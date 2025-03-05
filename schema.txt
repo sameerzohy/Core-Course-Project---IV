@@ -1,0 +1,96 @@
+Events Schema: 
+
+{
+  "_id": ObjectId,
+  "title": "Event Name",
+  "description": "Detailed description of the event",
+  "eventType": "workshop" | "competition",
+  "date": ISODate("2025-04-15T10:00:00Z"),
+  "location": "Venue or Online",
+  "bannerImage": "https://image-url.com",
+  "registrationFee": 100, 
+  "maxParticipants": 50,
+  "organizer": {
+    "name": "Organizer Name",
+    "contact": "+91XXXXXXXXXX",
+    "email": "organizer@example.com"
+  },
+  "registrations": [
+    {
+      "userId": ObjectId,
+      "timestamp": ISODate("2025-04-01T12:00:00Z"),
+      "paymentStatus": "pending" | "paid"
+    }
+  ],
+  "createdAt": ISODate("2025-03-10T08:00:00Z"),
+  "updatedAt": ISODate("2025-03-11T10:00:00Z")
+}
+
+
+Workshops Schema: 
+ {
+  "_id": ObjectId,
+  "eventId": ObjectId,
+  "speaker": {
+    "name": "Speaker Name",
+    "designation": "Speaker's Role",
+    "bio": "Short bio of the speaker",
+    "profileImage": "https://image-url.com"
+  },
+  "topicsCovered": [
+    "Flutter Basics",
+    "State Management",
+    "Animations in Flutter"
+  ],
+  "duration": "2 hours",
+  "requirements": ["Laptop", "VS Code Installed"],
+  "certificateProvided": true
+}
+
+
+Competition Schema: 
+
+{
+  "_id": ObjectId,
+  "eventId": ObjectId,
+  "prizes": [
+    {
+      "position": 1,
+      "reward": "₹5000 Cash Prize"
+    },
+    {
+      "position": 2,
+      "reward": "₹3000 Amazon Voucher"
+    }
+  ],
+  "rules": [
+    "Each participant must register individually",
+    "Teams must not exceed 3 members"
+  ],
+  "judgingCriteria": [
+    "Innovation",
+    "Execution",
+    "Presentation"
+  ],
+  "teamSize": {
+    "min": 1,
+    "max": 3
+  }
+}
+
+
+4.User Schema: 
+
+{
+  "_id": ObjectId,
+  "name": "User Name",
+  "email": "user@example.com",
+  "password": "hashed_password",
+  "registeredEvents": [
+    {
+      "eventId": ObjectId,
+      "registrationDate": ISODate("2025-04-01T12:00:00Z"),
+      "status": "confirmed" | "pending"
+    }
+  ]
+}

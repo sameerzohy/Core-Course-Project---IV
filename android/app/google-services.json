@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495824092615",
+    "project_id": "unstop-cli",
+    "storage_bucket": "unstop-cli.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495824092615:android:3ddfa4378585a794c3ade2",
+        "android_client_info": {
+          "package_name": "com.example.unstop_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWnrIaNwLpewcrg2rC0nY7gxF3xZPWIvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
