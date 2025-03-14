@@ -43,3 +43,33 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+
+# Firebase configuration files
+/firebase_options.dart
+/firebase_options.yaml
+
+# Google Services configuration files
+/google-services.json
+
+# Apple configuration files
+/GoogleService-Info.plist
+
+# API keys and credentials
+/api_keys.json
+/credentials.json
+
+# Firebase Realtime Database configuration files
+/firebase_database_config.json
+
+# Firebase Storage configuration files
+/firebase_storage_config.json
+
+# Firebase Authentication configuration files
+/firebase_auth_config.json
+
+# Other sensitive files
+/secrets.json
+/config.json
+/keys.json

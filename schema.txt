@@ -94,3 +94,237 @@ Competition Schema:
     }
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// my own form page:
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class HackathonAppliedScreen extends StatefulWidget {
+  const HackathonAppliedScreen({super.key});
+
+  @override
+  State<HackathonAppliedScreen> createState() => _HackathonAppliedScreenState();
+}
+
+class _HackathonAppliedScreenState extends State<HackathonAppliedScreen> {
+  final _formKey = GlobalKey<FormState>();
+  String hackathonName = '';
+  String hackathonMode = 'Online';
+  final dateController = TextEditingController();
+  final timeController = TextEditingController();
+  bool isPayment = false;
+
+  void uploadDetails() {
+    if (!_formKey.currentState!.validate()) return;
+
+    _formKey.currentState!.save();
+    print(hackathonName);
+  }
+
+  void _selectDate() async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
+      initialDate: DateTime.now(),
+    );
+
+    if (picked != null) {
+      setState(() {
+        dateController.text = DateFormat('dd-MM-yyyy').format(picked);
+      });
+      // print(date);
+    }
+  }
+
+  void _selectTime() async {
+    TimeOfDay? picked =
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    if (picked != null) {
+      setState(() {
+        timeController.text = picked.format(context);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.all(20),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                    labelText: 'Hackathon Name',
+                    hintText: 'Enter Hackathon Name',
+                    // label: Text('Hackathon Name'),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        width: 2.0,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        value.trim().isEmpty) {
+                      return 'Please Enter Hackathon Name';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    hackathonName = value!;
+                  }),
+              const SizedBox(height: 20),
+
+              // DrowDown Menu
+
+              DropdownButtonFormField<String>(
+                  value: 'Online',
+                  items: [
+                    DropdownMenuItem(child: Text('Online'), value: 'Online'),
+                    DropdownMenuItem(child: Text('Offline'), value: 'Offline'),
+                    DropdownMenuItem(child: Text('Hybrid'), value: 'Hybrid')
+                  ],
+                  onChanged: (value) {
+                    hackathonMode = value!;
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                    ),
+                    labelText: 'Hackathon Mode',
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                  )),
+
+              const SizedBox(height: 20),
+
+              Text(
+                'Date & Time',
+                // textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              TextFormField(
+                controller: dateController,
+                onTap: _selectDate,
+                readOnly: true,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                    labelText: 'Date',
+                    suffixIcon: Icon(Icons.calendar_today),
+                    hintText: 'Select Date'),
+              ),
+
+              const SizedBox(height: 20),
+
+              TextFormField(
+                controller: timeController,
+                onTap: _selectTime,
+                readOnly: true,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    ),
+                    labelText: 'Time',
+                    suffixIcon: Icon(Icons.watch_later_outlined),
+                    hintText: 'Select Time'),
+              ),
+
+              const SizedBox(height: 20),
+
+              Row(
+                children: [
+                  Checkbox(
+                    value: isPayment,
+                    onChanged: (value) {
+                      setState(() {
+                        isPayment = value!;
+                      });
+                    },
+                  ),
+                  Text('Payment Required'),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              TextFormField(
+                autocorrect: true,
+                maxLines: 5,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  hintText: 'Enter Description',
+                  // label: Text('Description'),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      width: 2.0,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: uploadDetails,
+                  child: const Text('Create Hackathon',
+                      style: TextStyle(fontSize: 18)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

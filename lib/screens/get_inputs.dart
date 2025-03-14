@@ -126,6 +126,7 @@ class _GetInputsState extends State<GetInputs> {
         'rollNo': rollNo,
         'name': studentName,
         'dateOfBirth': dateOfBirth,
+        'email': FirebaseAuth.instance.currentUser!.email
       });
     }
   }

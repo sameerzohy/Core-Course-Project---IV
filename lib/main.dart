@@ -46,18 +46,22 @@ class MyApp extends StatelessWidget {
                     );
                   }
 
-                  if (userSnapshot.hasData) {
-                    Map<String, dynamic> map =
-                        userSnapshot.data!.data() as Map<String, dynamic>;
-                    // print(map);
-                    if (!map.containsKey('name') ||
+                  if (userSnapshot.hasData &&
+                      userSnapshot.data != null &&
+                      userSnapshot.data!.exists) {
+                    Map<String, dynamic>? map =
+                        userSnapshot.data!.data() as Map<String, dynamic>?;
+
+                    if (map == null ||
+                        !map.containsKey('name') ||
                         !map.containsKey('rollNo') ||
                         !map.containsKey('collegeName') ||
                         !map.containsKey('dateOfBirth')) {
-                      return GetInputs();
+                      return const GetInputs();
                     }
+                    return const HomeScreen();
                   }
-                  return HomeScreen();
+                  return const GetInputs();
                 },
               );
             }

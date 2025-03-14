@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unstop_clone/screens/HomePage.dart';
 import 'package:unstop_clone/screens/events/events_screen.dart';
+import 'package:unstop_clone/screens/hackathons/hackathon_homescreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       HomePage(), // Instead of returning HomeScreen again
       EventsScreen(homeIndex: _onTappedItem),
       WorkshopsScreen(),
-      HackathonsScreen(),
+      HackathonHomescreen(homeIndex: _onTappedItem),
       ProfileScreen(),
     ];
 
