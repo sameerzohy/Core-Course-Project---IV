@@ -229,7 +229,7 @@ class _HackathonDetailsScreenState extends State<HackathonDetailsScreen> {
                         const Icon(Icons.people, size: 20),
                         const SizedBox(width: 10),
                         Text(
-                          "Registration Mode: ${participationType}",
+                          "Registration Mode: $participationType",
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
